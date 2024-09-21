@@ -8,7 +8,7 @@ export interface Event {
 
 export interface Detection {
   category: DetectionCategory;
-  date: Date;
+  date: string;
   geometry: DetectionGeometry;
   areaOverlaps: AreaOverlap[];
   totalSize: number;

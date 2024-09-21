@@ -9,6 +9,22 @@
   const onClose = (): void => {
     dispatch('close');
   };
+
+  const getSortedDetectionDates = () => {
+    return event.detections
+      .map((detection) => detection.date)
+      .filter((value, index, array) => array.indexOf(value) === index)
+      .sort((a: string, b: string) => {
+        const aDate = new Date(a);
+        const bDate = new Date(b);
+        if (aDate > bDate) {
+          return -1;
+        } else if (aDate < bDate) {
+          return 1;
+        }
+        return 0;
+      });
+  };
 </script>
 
 {#if event != null}
@@ -49,7 +65,13 @@
         <td>5</td>
       </tr>
     </table>
-  </div>{/if}
+    <div class="detection-dates-container">
+      {#each getSortedDetectionDates() as detectionDate}
+        <span>{detectionDate}</span>
+      {/each}
+    </div>
+  </div>
+{/if}
 
 <style>
   .header-container {
@@ -69,5 +91,11 @@
 
   .share-buttons-container {
     display: flex;
+  }
+
+  .detection-dates-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
   }
 </style>
