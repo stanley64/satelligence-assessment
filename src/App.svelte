@@ -1,21 +1,36 @@
-<script>
-  import { Map } from '@beyonk/svelte-mapbox'
-	import Instructions from './Instructions.svelte'
-	
-  let mapComponent
+<script lang="ts">
+  import EventDetails from './components/EventDetails.svelte';
+  import eventsJson from './data/events.json';
+  import type { Event } from './models';
+  import Map from './components/Map.svelte';
+  import { onMount } from 'svelte';
 
-	function onReady() {
-    mapComponent.flyTo({center:[5,52]}) 
-	}
+  let events: Event[] = [];
+
+  onMount(() => {
+    events = eventsJson.events;
+  });
 </script>
 
-<Instructions/>
+<div class="app-container">
+  <div class="map-container">
+    <Map events={[events[3]]} />
+  </div>
 
-<Map accessToken="pk.eyJ1Ijoic2F0ZWxsaWdlbmNlLXN0YWdpbmciLCJhIjoiY2w2cWtxaGNtMGJlYjNkdGNsMXI4MnpiYSJ9.LEONl2580jXyWbjJE7iMaQ"
-	style="mapbox://styles/mapbox/light-v11"
-	zoom=6
-	version="v2.12.0"
-  bind:this={mapComponent} 
-  on:ready={onReady}
->
-</Map>
+  <div class="panel-container">
+    <EventDetails event={events[3]} />
+  </div>
+</div>
+
+<style>
+  .app-container {
+    display: flex;
+    height: 100%;
+  }
+  .map-container {
+    flex: 1;
+  }
+  .panel-container {
+    flex: 1;
+  }
+</style>
