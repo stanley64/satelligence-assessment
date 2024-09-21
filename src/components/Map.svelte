@@ -9,7 +9,7 @@
   let mapComponent: Map;
 
   function onMapReady(): void {
-    mapComponent.setCenter([116.72579249999995, 6.717405]);
+    mapComponent.setCenter([118.2031599815993, 5.63907351519374]);
 
     loadDetections(mapComponent.getMap());
   }
@@ -56,7 +56,7 @@
 <Map
   accessToken="pk.eyJ1Ijoic2F0ZWxsaWdlbmNlLXN0YWdpbmciLCJhIjoiY2w2cWtxaGNtMGJlYjNkdGNsMXI4MnpiYSJ9.LEONl2580jXyWbjJE7iMaQ"
   style={'mapbox://styles/mapbox/light-v11'}
-  zoom="6"
+  zoom="13"
   version="v2.12.0"
   bind:this={mapComponent}
   on:ready={onMapReady}

@@ -5,31 +5,21 @@
   import Map from './components/Map.svelte';
   import { onMount } from 'svelte';
 
-  let showPanel: boolean = false;
   let events: Event[] = [];
 
   onMount(() => {
     events = eventsJson.events;
   });
-
-  const openEventDetailsPanel = (event: Event): void => {
-    showPanel = true;
-  };
-  const closeEventDetailsPanel = (): void => {
-    showPanel = false;
-  };
 </script>
 
 <div class="app-container">
   <div class="map-container">
-    <Map {events} />
+    <Map events={[events[3]]} />
   </div>
 
-  {#if showPanel}
-    <div class="panel-container">
-      <EventDetails on:close={closeEventDetailsPanel} />
-    </div>
-  {/if}
+  <div class="panel-container">
+    <EventDetails event={events[3]} />
+  </div>
 </div>
 
 <style>
