@@ -1,15 +1,16 @@
 <script lang="ts">
   import { Map } from '@beyonk/svelte-mapbox';
   import EventDetails from './EventDetails.svelte';
+  import type { Events } from './models';
 
   let mapComponent;
   let showPanel: boolean = false;
 
-  function onReady() {
+  function onReady(): void {
     mapComponent.flyTo({ center: [5, 52] });
   }
 
-  const openEventDetailsPanel = (event: any) => {
+  const openEventDetailsPanel = (event: Events): void => {
     showPanel = true;
   };
 </script>
