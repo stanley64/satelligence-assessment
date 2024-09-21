@@ -1,17 +1,26 @@
 <script lang="ts">
   import { Map } from '@beyonk/svelte-mapbox';
   import EventDetails from './EventDetails.svelte';
+  import eventsJson from './data/events.json';
   import type { Events } from './models';
 
-  let mapComponent;
+  let mapComponent: Map;
   let showPanel: boolean = false;
+  let events: Events;
+
+  const onMount = (): void => {
+    events = eventsJson;
+  };
 
   function onReady(): void {
     mapComponent.flyTo({ center: [5, 52] });
   }
 
-  const openEventDetailsPanel = (event: Events): void => {
+  const openEventDetailsPanel = (event: Event): void => {
     showPanel = true;
+  };
+  const closeEventDetailsPanel = (): void => {
+    showPanel = false;
   };
 </script>
 
@@ -20,7 +29,6 @@
     <Map
       accessToken="pk.eyJ1Ijoic2F0ZWxsaWdlbmNlLXN0YWdpbmciLCJhIjoiY2w2cWtxaGNtMGJlYjNkdGNsMXI4MnpiYSJ9.LEONl2580jXyWbjJE7iMaQ"
       style="mapbox://styles/mapbox/light-v11"
-      class="map"
       zoom="6"
       version="v2.12.0"
       bind:this={mapComponent}
@@ -30,7 +38,7 @@
 
   {#if showPanel}
     <div style="flex: 1">
-      <EventDetails on:close={() => (showPanel = false)} />
+      <EventDetails on:close={closeEventDetailsPanel} />
     </div>
   {/if}
 </div>
@@ -39,8 +47,5 @@
   .app-container {
     display: flex;
     height: 100%;
-  }
-  .map {
-    flex: 1;
   }
 </style>
