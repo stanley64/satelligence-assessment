@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Map } from '@beyonk/svelte-mapbox'
 	import Instructions from './Instructions.svelte'
 	
