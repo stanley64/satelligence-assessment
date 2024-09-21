@@ -1,13 +1,13 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
 
+  export let event: any;
+
   const dispatch = createEventDispatcher();
 
   const onClose = (): void => {
     dispatch('close');
   };
-
-  export let event: any;
 </script>
 
 <div>
