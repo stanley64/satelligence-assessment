@@ -1,8 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import type { Event } from './models';
+  import type { Event } from '../models';
 
-  export const event: Event;
+  export let event: Event;
 
   const dispatch = createEventDispatcher();
 

@@ -1,7 +1,3 @@
-export interface Events {
-  events: Event[];
-}
-
 export interface Event {
   geometry: EventGeometry;
   references: string[];
@@ -11,7 +7,7 @@ export interface Event {
 }
 
 export interface Detection {
-  category: Category;
+  category: DetectionCategory;
   date: Date;
   geometry: DetectionGeometry;
   areaOverlaps: AreaOverlap[];
@@ -24,7 +20,7 @@ export interface AreaOverlap {
   size: number;
 }
 
-export enum Category {
+export enum DetectionCategory {
   Deforestation = 'deforestation',
 }
 
